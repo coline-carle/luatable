@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Sweetlie"]
   spec.email         = ["libellule.se@gmail.com"]
 
-  spec.summary       = %q{WoW SavedVariables Parsing}
-  spec.description   = %q{ C implementation of SavedVariables files from WoW Folder parsing}
+  spec.summary       = %q{World of Warcraft SavedVariables Parsing}
+  spec.description   = %q{ C implementation of SavedVariables files from World of Warcraft Folder parsing}
   spec.homepage      = "https://www.wipeinc.com"
   spec.license       = "Ruby"
 
