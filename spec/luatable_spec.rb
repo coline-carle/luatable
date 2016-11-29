@@ -75,5 +75,16 @@ describe LuaTable do
     it 'parse strings' do
       expect(LuaTable.parse('v = "Léh"')['v']).to eq 'Léh'
     end
+
+    it 'parse table with commentaries' do
+      table_string = <<'EOS'
+      table = {
+              35625, -- [1]
+              39342, -- [2]
+      }
+EOS
+
+      expect(LuaTable.parse(table_string)['table'].size).to eq 2
+    end
   end
 end

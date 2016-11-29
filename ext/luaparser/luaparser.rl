@@ -172,14 +172,14 @@ void Init_luaparser(void)
         else { fhold; fbreak; }
     }
 
-	main := ignore*  (  Vnil @parse_nil |
+	main := (  Vnil @parse_nil |
 						Vtrue @parse_true |
 						Vfalse @parse_false |
 						VNaN @parse_nan |
 						begin_number >parse_number |
 						begin_string >parse_string |
                         begin_table >parse_table
-						) ignore* %*exit;
+			) %*exit;
 }%%
 
 
@@ -249,12 +249,10 @@ static char *LuaTable_parse_table(Lua_Parser *lua, char *p, char *pe, VALUE *res
      action parse_value {
         VALUE key_name = LONG2FIX(*pIndex);
         char *np;
-
         np = LuaTable_parse_value(lua, fpc, pe, &v, current_nesting);
-
         if (np == NULL) {
             fhold; fbreak;
-        } else {
+        } else if (np > fpc) {
             rb_hash_aset(*table, key_name, v);
             (*pIndex)++;
             fexec np;
